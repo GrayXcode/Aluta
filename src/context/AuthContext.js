@@ -27,7 +27,7 @@ export const AuthContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(AuthReducer, INTITIAL_STATE);
     const [currentUser, setCurrentUser] = useState(null)
     useEffect(() => {
-        getUserDetails = async () => {
+        const  getUserDetails = async () => {
             const res = await axios.get(`${PF}/api/user/${state.user._id}`)
             localStorage.setItem("user", JSON.stringify(res.data));            
         }
