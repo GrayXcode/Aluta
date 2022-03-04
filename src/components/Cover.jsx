@@ -22,7 +22,7 @@ export default function Cover({UserProfile}) {
   const followUser = async e => {
     if(follow.includes(e.target.id)){
       try {
-        const res = await axios.put(`http://localhost:8800/api/user/unfollow/${e.target.id}`, {userID:user._id})
+        const res = await axios.put(`${PF}/api/user/unfollow/${e.target.id}`, {userID:user._id})
         following.filter(f => f !== e.target.id)
         setFollow(following.filter(f => f !== e.target.id))
         setAllFollows(!allFollows)
@@ -31,7 +31,7 @@ export default function Cover({UserProfile}) {
       }
     } else{
       try {
-      const res = await axios.put(`http://localhost:8800/api/user/follow/${e.target.id}`, {userID:user._id});
+      const res = await axios.put(`${PF}/api/user/follow/${e.target.id}`, {userID:user._id});
       following.concat(e.target.id)
       setFollow(following.concat(e.target.id))
       }
@@ -44,12 +44,12 @@ export default function Cover({UserProfile}) {
   const UserCover = () => (
     <div className="flex flex-col gap-3">
     <div className="md:pl-3 lg:px-1 relative mb-7">
-        {user.coverPhoto && user.coverPhoto !== " " ? <img src={PF+user.coverPhoto} className="h-60 md:h-80 w-full object-cover rounded-sm" alt="" /> : (
+        {user.coverPhoto && user.coverPhoto !== " " ? <img src={user.coverPhoto} className="h-60 md:h-80 w-full object-cover rounded-sm" alt="" /> : (
           <div className="rounded-sm  w-full h-60 bg-gray-200 relative">
             <PhotographIcon className="h-16 text-gray-400 absolute transform top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer" />
           </div>
         )}
-        {user.profilePicture && user.profilePicture !== " " ? <img src={PF+user.profilePicture} className="h-36 w-36 p-1 object-cover borderFull border bg-white border-white absolute -bottom-28 transform left-1/2 -translate-x-1/2 -translate-y-1/2" alt="" /> : <UserCircleIcon className="h-36 w-36 object-cover borderFull bg-white absolute -bottom-28 transform left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-300" />}
+        {user.profilePicture && user.profilePicture !== " " ? <img src={user.profilePicture} className="h-36 w-36 p-1 object-cover borderFull border bg-white border-white absolute -bottom-28 transform left-1/2 -translate-x-1/2 -translate-y-1/2" alt="" /> : <UserCircleIcon className="h-36 w-36 object-cover borderFull bg-white absolute -bottom-28 transform left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-300" />}
     </div>
     <div className="flex flex-col items-center justify-center my-5">
         <p className="font-bold text-lg">{user.username}</p>
@@ -67,12 +67,12 @@ export default function Cover({UserProfile}) {
   return (
     <div className="flex flex-col gap-3">
       <div className="md:pl-3 lg:px-1 relative mb-7">
-          {currentUserProfile?.coverPhoto && currentUserProfile?.coverPhoto !== " " ? <img src={PF+currentUserProfile.coverPhoto} className="h-60 md:h-80 w-full object-cover rounded-sm" alt="" /> : (
+          {currentUserProfile?.coverPhoto && currentUserProfile?.coverPhoto !== " " ? <img src={currentUserProfile.coverPhoto} className="h-60 md:h-80 w-full object-cover rounded-sm" alt="" /> : (
             <div className="rounded-sm  w-full h-60 bg-gray-200 relative">
               <PhotographIcon className="h-16 text-gray-400 absolute transform top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer" />
             </div>
           )}
-          {currentUserProfile.profilePicture && currentUserProfile?.profilePicture !== " " ? <img src={PF+currentUserProfile.profilePicture} className="h-36 w-36 p-1 object-cover borderFull border bg-white border-white absolute -bottom-28 transform left-1/2 -translate-x-1/2 -translate-y-1/2" alt="" /> : <UserCircleIcon className="h-36 w-36 object-cover borderFull bg-white absolute -bottom-28 transform left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-300" />}
+          {currentUserProfile.profilePicture && currentUserProfile?.profilePicture !== " " ? <img src={currentUserProfile.profilePicture} className="h-36 w-36 p-1 object-cover borderFull border bg-white border-white absolute -bottom-28 transform left-1/2 -translate-x-1/2 -translate-y-1/2" alt="" /> : <UserCircleIcon className="h-36 w-36 object-cover borderFull bg-white absolute -bottom-28 transform left-1/2 -translate-x-1/2 -translate-y-1/2 text-gray-300" />}
       </div>
       <div className="flex flex-col items-center justify-center my-5">
           <p className="font-bold text-lg">{currentUserProfile?.username}</p>

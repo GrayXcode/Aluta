@@ -61,7 +61,7 @@ export default function Topbar({messenger, home, profile, userPofile}) {
           </div>
             {chatBar.length !== 0 &&
             <div onClick={getUserData} className="flex items-center cursor-pointer">
-              {chatBar.profilePicture ? <img src={PF + chatBar.profilePicture} className="w-12 h-12 m-3 object-cover borderFull" alt="" /> : <UserCircleIcon className="h-12 m-3 text-gray-500" />}
+              {chatBar.profilePicture ? <img src={chatBar.profilePicture} className="w-12 h-12 m-3 object-cover borderFull" alt="" /> : <UserCircleIcon className="h-12 m-3 text-gray-500" />}
               <div className="flex flex-col">
                 <p className="text-gray-600 text-lg font-semibold ">{chatBar.username}</p>
                 {socketUser.some(o => o.userId == chatBar._id) && <p className="text-gray-600 text-xs">online</p>}
@@ -95,7 +95,7 @@ export default function Topbar({messenger, home, profile, userPofile}) {
           } 
           <Link to={"/profile"}>
               {user.profilePicture && user.profilePicture !== " " ?
-                <img className="h-8 w-8 hidden sm:inline-block  sm:h-10 sm:w-10 borderFull object-cover" src={PF+user.profilePicture} alt="" />  : 
+                <img className="h-8 w-8 hidden sm:inline-block  sm:h-10 sm:w-10 borderFull object-cover" src={user.profilePicture} alt="" />  : 
                 <UserCircleIcon className="h-8 w-8 hidden sm:inline-block text-gray-400 sm:h-10 sm:w-10" />
               }
           </Link>

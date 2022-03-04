@@ -55,7 +55,7 @@ export default function Share() {
       }
   
       try {
-        await axios.post("http://localhost:8800/api/post/create", newPost)
+        await axios.post(`${PF}/api/post/create`, newPost)
         .then(() =>  {
           setLoading(false)
           setGetPosts(!getpost)
@@ -76,7 +76,7 @@ export default function Share() {
         <div className="flex flex-col  gap-5">
           <div className="flex gap-2">
           {user.profilePicture ?
-                  <img alt="" className="borderFull h-12 w-12 object-cover" src={PF+user.profilePicture} alt="" />  : 
+                  <img alt="" className="borderFull h-12 w-12 object-cover" src={user.profilePicture} alt="" />  : 
                   <UserCircleIcon className="h-12 w-12 text-gray-400" />
                 }
             <textarea type="text" rows="3" placeholder={`what's on your mind ${user.username} ?`} className="text-sm focus:outline-none  border-none focus:ring-0 flex-1 cursor-auto scrollbar-thumb-gray-300 scrollbar-track-gray-200 scrollbar-thin" ref={postDesc} onChange={e => e.target.value == "" ? setEmptyDesc(true) : setEmptyDesc(false)} />

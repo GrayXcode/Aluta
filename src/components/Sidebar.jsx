@@ -20,14 +20,14 @@ export default function Sidebar({home, homePage}) {
 
     useEffect(() => {
         const getUsers = async () => {
-            await axios.get(`http://localhost:8800/api/search/user?username=${searchedUsers}`)
+            await axios.get(`${PF}/api/search/user?username=${searchedUsers}`)
             .then(res => setUser(res.data))
         }
         getUsers()
     }, [searchedUsers])
 
     const getUserData = async e => {
-        const res = await axios.get(`http://localhost:8800/api/user/${e.target.id}`)
+        const res = await axios.get(`${PF}/api/user/${e.target.id}`)
         localStorage.setItem("currentUser", null)
         localStorage.setItem("currentUser", JSON.stringify(res.data))
         navigate("/friend/profile")
@@ -39,7 +39,7 @@ export default function Sidebar({home, homePage}) {
     useEffect(() => {
         const getFans = async () => {
           try {
-            await axios.get(`http://localhost:8800/api/user/fans/${currentUser._id}`)
+            await axios.get(`${PF}/api/user/fans/${currentUser._id}`)
             .then(fans => {
               setFollowing(fans.data.following)
             })
@@ -53,7 +53,7 @@ export default function Sidebar({home, homePage}) {
     
        const followUser = async e => {
          try {
-          following.includes(e.target.id) ? (await axios.put(`http://localhost:8800/api/user/unfollow/${e.target.id}`, {userID:currentUser._id})) : (await axios.put(`http://localhost:8800/api/user/follow/${e.target.id}`, {userID:currentUser._id}))
+          following.includes(e.target.id) ? (await axios.put(`${PF}/api/user/unfollow/${e.target.id}`, {userID:currentUser._id})) : (await axios.put(`${PF}/api/user/follow/${e.target.id}`, {userID:currentUser._id}))
           setFetchFollowers(!fetchFollowers)
          } catch (err) {
            console.log(err)
@@ -77,7 +77,7 @@ export default function Sidebar({home, homePage}) {
                    </div>
                   <div className="flex">
                       <Link to='/profile' >
-                          {currentUser.profilePicture ? <img className="h-6 w-6 mr-2 borderFull object-cover" src={PF+ currentUser.profilePicture} alt="" /> : <UserCircleIcon className="h-6 text-gray-600 mr-2" />}
+                          {currentUser.profilePicture ? <img className="h-6 w-6 mr-2 borderFull object-cover" src={currentUser.profilePicture} alt="" /> : <UserCircleIcon className="h-6 text-gray-600 mr-2" />}
                       </Link>
                       <Link to='/profile' >
                           <span className="text-sm">Profile</span>
@@ -94,7 +94,7 @@ export default function Sidebar({home, homePage}) {
                             <div key={data._id} className="flex items-center justify-between w-[90%] space-x-2">
                               <div className="relative flex items-center justify-center gap-3">
                                   {data.profilePicture ?
-                                    <img src={PF+data.profilePicture} className="h-10 w-10 object-cover borderFull my-2" alt="" /> :
+                                    <img src={data.profilePicture} className="h-10 w-10 object-cover borderFull my-2" alt="" /> :
                                     <UserCircleIcon className="h-10 w-10 my-2 text-gray-400" />
                                   }
                                    {socketUser.some(s => s.userId == data._id) && <span className="bg-green-500 borderFull h-[10px] w-[10px] absolute top-2 left-7"></span>}
