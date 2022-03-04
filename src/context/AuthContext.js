@@ -19,7 +19,7 @@ export const AuthContextProvider = ({children}) => {
     const [socketUser, setSocketUser] = useState([])
   // create connection to socket server
     useEffect(() => {
-      socket.current = io("ws://localhost:8900")
+      socket.current = io("https://alutasocket.herokuapp.com")
     }, [])
 
     const [state, dispatch] = useReducer(AuthReducer, INTITIAL_STATE);
