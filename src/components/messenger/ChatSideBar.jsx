@@ -5,7 +5,7 @@ import axios from "axios"
 import { AuthContext } from "../../context/AuthContext";
 import { activeUsers } from "../../atoms/modalAtom";
 import { useRecoilState } from "recoil";
-import {PF} from "../pf"
+import {PF} from "../../pf"
 
 
 export default function ChatSideBar() {
