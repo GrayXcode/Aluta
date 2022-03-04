@@ -2,7 +2,9 @@
 import {createContext, useEffect, useReducer, useRef, useState} from "react";
 import AuthReducer from "./Reducer";
 import {io} from "socket.io-client"
-
+import axios from "axios"
+import {PF} from '../pf'
+ 
 
 const INTITIAL_STATE = {
     user: JSON.parse(localStorage.getItem("user")) || null,
@@ -25,7 +27,11 @@ export const AuthContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(AuthReducer, INTITIAL_STATE);
     const [currentUser, setCurrentUser] = useState(null)
     useEffect(() => {
-        localStorage.setItem("user", JSON.stringify(state.user));
+        getUserDetails = async () => {
+            const res = await axios.get(`${PF}/api/user/${state.user._id}`)
+            localStorage.setItem("user", JSON.stringify(res.data));            
+        }
+        state.user?._id ? getUserDetails() : localStorage.setItem("user", JSON.stringify(state.user));
         setCurrentUser(JSON.parse(localStorage.getItem("user")))
     }, [state.user])
     // send userid to socket server

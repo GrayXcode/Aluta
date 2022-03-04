@@ -243,7 +243,7 @@ export default function UpdateProfile() {
           </div>
 
           <div className="flex items-center justify-between mb-10 mx-10">
-              <Link to={`/profile/${user.username}`}>
+              <Link to={"/profile"}>
                   <button className="text-gray-700 border rounded-md border-gray-600 p-2 text-xs">back</button>
               </Link>
               <button onClick={updateProfile} className="bg-green-500 text-white rounded-md p-2 font-semibold text-xs">{updating ? 'Updating...' : 'update profile'}</button>
