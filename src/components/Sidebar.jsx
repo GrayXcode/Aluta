@@ -75,7 +75,7 @@ export default function Sidebar({home, homePage}) {
       <div className={`w-full ${homePage && "top-20 z-20 bg-white"} ${closeBar && 'hidden md:block'} fixed lg:w-48 xl:w-56 md:w-40`}>
           <div className="fullH overflow-y-scroll scrollbar scrollbar-thumb-gray-300 mt-12 ml-2 scrollbar-track-gray-200 scrollbar-thin p-2">
               <h2 className="font-semibold text-gray-600 my-4">Hi {currentUser.username}</h2>
-              <div onClick={() => setHomeMobile(false)} className="flex flex-col items-start gap-4">
+              <div onClick={() => setHomeMobile(false)} className="flex flex-col items-start gap-4 mb-10">
                   <Link to="/messenger">
                       <div className="flex">
                           <ChatIcon className="h-5 mr-2 text-gray-600" />
