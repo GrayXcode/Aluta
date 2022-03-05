@@ -5,7 +5,7 @@ import axios from "axios";
 import { useContext, useRef, useState } from "react"
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { chatTopbar, followers, getAMessage, setFollows } from "../atoms/modalAtom";
+import { chatScreen, chatTopbar, followers, getAMessage, setFollows } from "../atoms/modalAtom";
 import { AuthContext } from "../context/AuthContext";
 import {PF} from "../pf"
 
@@ -17,6 +17,7 @@ export default function Cover({UserProfile}) {
   const [follow, setFollow] = useState(following)
   const [chatBar, setChatBar] = useRecoilState(chatTopbar)
   const [getMessage, setGetMessage] = useRecoilState(getAMessage)
+  const [chatView, setChatView] = useRecoilState(chatScreen)
 
   const currentUserProfile = JSON.parse(localStorage.getItem("currentUser"));
   const followUser = async e => {
@@ -80,7 +81,7 @@ export default function Cover({UserProfile}) {
           <p className="text-sm text-gray-800 my-1">{currentUserProfile?.bio}</p>
           <div className="flex items-center gap-4">
             <Link to={`/messenger`}>
-              <div onClick={() => {setChatBar(currentUserProfile);  setGetMessage([{conversationId: '', recieverId: currentUserProfile._id}])}} className="flex items-center gap-2 bg-blue-500 rounded-md my-3 p-2">
+              <div onClick={() => {setChatBar(currentUserProfile);  setGetMessage([{conversationId: '', recieverId: currentUserProfile._id}]); setChatView(true)}} className="flex items-center gap-2 bg-blue-500 rounded-md my-3 p-2">
                 <p className="text-xs font-semibold text-white">
                   Send Message
                 </p>

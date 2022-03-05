@@ -84,7 +84,7 @@ export default function Share() {
           <hr className="bg-gray-300 h-[2px]" />
                 {file && 
                 <div className="relative mx-auto">
-                  <img src={URL.createObjectURL(file)} className="h-80 object-contain" alt="" />
+                  <img src={URL.createObjectURL(file)} className="rounded-sm object-cover lg:object-cover sm:h-[570px] md:h-[420px] lg:h-[570px] h-[420px] w-full" alt="" />
                   <span 
                   onClick={e => setFile(null)}
                   className="absolute -top-2 text-md right-0 h-8 font-bold text-gray-600 bg-white p-2 rounded-lg cursor-pointer">X</span>

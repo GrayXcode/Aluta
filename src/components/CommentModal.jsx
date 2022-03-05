@@ -47,7 +47,7 @@ export default function CommentModal() {
       await Promise.all(
         commentUser.map( async comment => {
           try {
-            const res = await axios.get(`http://localhost:8800/api/user/${comment.userId}`)
+            const res = await axios.get(`${PF}/api/user/${comment.userId}`)
             return totalComments.push({user: res.data, text: comment.text, time: comment.time, id: comment._id, date: comment.createdAt})
           } catch (err) {
             console.log(err)
